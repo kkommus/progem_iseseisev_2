@@ -1,22 +1,23 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["arvuta"])) {
-    // Kontrollime, kas teenuste valik on tehtud
-    if ($_POST["algajatele_koolitus"] == "none" && $_POST["edasijoudnutele_koolitus"] == "none") {
-        echo "<p class='text-danger'>Palun vali vähemalt üks koolitus!</p>";
-    } else {
-        // Siin võid jätkata oma kalkulatsiooni loogikaga
-        // Näiteks, kui hind on alati 199€ või 299€ vastavalt valikule
-        $hind = 0;
+if (isset($_POST['arvuta'])) {
+    $algajatele_koolitus = $_POST['algajatele_koolitus'];
+    $edasijoudnutele_koolitus = $_POST['edasijoudnutele_koolitus'];
 
-        if ($_POST["algajatele_koolitus"] != "none") {
-            $hind += 199;
-        }
+    $algajatele_hind = 0;
+    $edasijoudnutele_hind = 0;
 
-        if ($_POST["edasijoudnutele_koolitus"] != "none") {
-            $hind += 299;
-        }
-
-        echo "<p class='text-success'>Kokku maksumus: " . $hind . "€</p>";
+    // Määra hinnad vastavalt valitud teenustele
+    if ($algajatele_koolitus === 'sisulooja' || $algajatele_koolitus === 'turundus' || $algajatele_koolitus === 'reklaamvideo' || $algajatele_koolitus === 'graafiline_disain') {
+        $algajatele_hind = 199;
     }
+
+    if ($edasijoudnutele_koolitus === 'sisulooja2' || $edasijoudnutele_koolitus === 'turundus2' || $edasijoudnutele_koolitus === 'reklaamvideo2' || $edasijoudnutele_koolitus === 'graafiline_disain2') {
+        $edasijoudnutele_hind = 299;
+    }
+
+    // Arvuta kokkuhind ja kuva see
+    $kokkuhind = $algajatele_hind + $edasijoudnutele_hind;
+    echo '<div class="alert alert-success mt-3">Kokkuhind: ' . $kokkuhind . ' €</div>';
 }
 ?>
+
