@@ -8,7 +8,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-
+  
 <!-- Päis koos e-posti aadressiga -->
 <header>
     <div class="container">
@@ -48,7 +48,7 @@
             <a class="nav-link" href="#">Tooted</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Teenused</a>
+            <a id="teenusedNupp" class="nav-link" href="#">Teenused</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Kontakt</a>
@@ -149,6 +149,16 @@
 
 <!-- Lisame Bootstrapi skriptifaili (vajalik Bootstrapi komponentide jaoks) -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Lisame JavaScript-koodi uue lehe avamiseks -->
+<script>
+  // Funktsioon Teenused nupu klikkimiseks
+  function avaNupp() {
+    // Muuda allpool olevat URL-i vastavalt soovitud lehele
+    window.location.href = "Teenused.html";
+  }
 
+  // Kuula Teenused nupu klikki
+  document.getElementById("teenusedNupp").addEventListener("click", avaNupp);
+</script>
 </body>
 </html>
