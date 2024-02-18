@@ -17,7 +17,7 @@
           <p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
             <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z"/>
           </svg> sinu@nimi.ee <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-headphones" viewBox="0 0 16 16">
-            <path d="M8 3a5 5 0 0 0-5 5v1h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V8a6 6 0 1 1 12 0v5a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1V8a5 5 0 0 0-5-5"/>
+            <path d="M8 3a5 5 0 0 0-5 5v1h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V8a6 6 0 1 1 12 0v5a1 1 0 0 1-1 1h-1a1 a 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1V8a5 5 0 0 0-5-5"/>
           </svg> +372 5555 6666 | <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
             <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/>
           </svg> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitter" viewBox="0 0 16 16">
@@ -61,7 +61,7 @@
   <section class="container mt-4">
     <h2 class="text-center">Vali koolitus</h2>
   
-    <form method="post" action="" id="kalkulatsiooniVorm">
+    <form method="post" action="kalkulaatori_tootlemise_skript.php">
       <div class="mb-3">
         <label for="algajatele" class="form-label">Algajatele</label>
         <select class="form-select" id="algajatele" name="algajatele_koolitus">
@@ -85,32 +85,13 @@
       </div>
   
       <button type="submit" class="btn btn-primary" name="arvuta">Arvuta</button>
-      <div id="hind-tulemus"></div>
     </form>
+
+    <?php include('kalkulaatori_tootlemise_skript.php'); ?>
+  
   </section>
   
   <!-- Lisame Bootstrapi skriptifaili (vajalik Bootstrapi komponentide jaoks) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    document.getElementById("kalkulatsiooniVorm").addEventListener("submit", function (event) {
-      // Vältida vormi tavapärast saatmist
-      event.preventDefault();
-
-      // Saata POST päring serverisse AJAX-iga
-      var xhr = new XMLHttpRequest();
-      xhr.open("POST", "kalkulaatori_tootlemise_skript.php", true);
-      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-
-      xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-          // Kuvame kalkulatsiooni tulemuse
-          document.getElementById("hind-tulemus").innerHTML = xhr.responseText;
-        }
-      };
-
-      // Saadame vormi andmed
-      xhr.send(new URLSearchParams(new FormData(event.target)));
-    });
-  </script>
 </body>
 </html>
