@@ -15,9 +15,8 @@ if (isset($_POST['arvuta'])) {
         $edasijoudnutele_hind = 299;
     }
 
-    // Arvuta kokkuhind ja kuva see
+    // Arvuta kokkuhind ja kuva see otse vormi all
     $kokkuhind = $algajatele_hind + $edasijoudnutele_hind;
     echo '<div class="alert alert-success mt-3">Kokkuhind: ' . $kokkuhind . ' €</div>';
 }
 ?>
-
