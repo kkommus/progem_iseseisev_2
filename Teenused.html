@@ -59,9 +59,9 @@
   </div>
 
   <section class="container mt-4">
-    <h2 class="text-center">Vali Sobiv Koolitus</h2>
+    <h2 class="text-center">Vali koolitus</h2>
   
-    <form method="post" action="kalkulaatori_tootlemise_skript.php"> <!-- Lisatud action atribuut -->
+    <form method="post" action="" id="kalkulatsiooniVorm">
       <div class="mb-3">
         <label for="algajatele" class="form-label">Algajatele</label>
         <select class="form-select" id="algajatele" name="algajatele_koolitus">
@@ -85,14 +85,36 @@
       </div>
   
       <button type="submit" class="btn btn-primary" name="arvuta">Arvuta</button>
+      <div id="hind-tulemus"></div>
     </form>
-
-    <?php include('kalkulaatori_tootlemise_skript.php'); ?> <!-- Lisa see rida, et hinna tulemused näha oleks -->
-  
   </section>
   
   <!-- Lisame Bootstrapi skriptifaili (vajalik Bootstrapi komponentide jaoks) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  
-  </body>
+  <!-- Lisame jQuery skriptifaili -->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script>
+    $(document).ready(function() {
+        $("#kalkulatsiooniVorm").submit(function(event) {
+            // Vältida vormi tavapärast saatmist
+            event.preventDefault();
+
+            // Saata POST päring serverisse AJAX-iga
+            $.ajax({
+                type: "POST",
+                url: "kalkulaatori_tootlemise_skript.php",
+                data: $(this).serialize(), // Saadame vormi andmed
+                success: function(response) {
+                    // Kuvame kalkulatsiooni tulemuse
+                    $("#hind-tulemus").html(response);
+                },
+                error: function() {
+                    // Kui päring ebaõnnestub
+                    alert("Viga kalkulatsiooni päringus.");
+                }
+            });
+        });
+    });
+  </script>
+</body>
 </html>
