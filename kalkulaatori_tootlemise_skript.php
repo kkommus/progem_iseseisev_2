@@ -1,7 +1,7 @@
 <?php
-if (isset($_POST['arvuta'])) {
-    $algajatele_koolitus = $_POST['algajatele_koolitus'];
-    $edasijoudnutele_koolitus = $_POST['edasijoudnutele_koolitus'];
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["arvuta"])) {
+    $algajatele_koolitus = $_POST["algajatele_koolitus"];
+    $edasijoudnutele_koolitus = $_POST["edasijoudnutele_koolitus"];
 
     $algajatele_hind = 0;
     $edasijoudnutele_hind = 0;
@@ -15,8 +15,9 @@ if (isset($_POST['arvuta'])) {
         $edasijoudnutele_hind = 299;
     }
 
-    // Arvuta kokkuhind ja kuva see otse vormi all
+    // Arvuta kokkuhind
     $kokkuhind = $algajatele_hind + $edasijoudnutele_hind;
-    echo '<div class="alert alert-success mt-3">Kokkuhind: ' . $kokkuhind . ' €</div>';
+    // Kuvame tulemuse otse veebilehel "Arvuta" nupu kõrval
+    echo '<div class="container mt-3"><div class="row"><div class="col-md-6 offset-md-6"><div class="alert alert-success">Kokkuhind: ' . $kokkuhind . ' €</div></div></div></div>';
 }
 ?>
