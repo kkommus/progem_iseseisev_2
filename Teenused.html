@@ -91,32 +91,26 @@
   
   <!-- Lisame Bootstrapi skriptifaili (vajalik Bootstrapi komponentide jaoks) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- Lisame jQuery skriptifaili -->
-  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <script>
-    $(document).ready(function() {
-        $("#kalkulatsiooniVorm").submit(function(event) {
-            // Vältida vormi tavapärast saatmist
-            event.preventDefault();
+    document.getElementById("kalkulatsiooniVorm").addEventListener("submit", function (event) {
+      // Vältida vormi tavapärast saatmist
+      event.preventDefault();
 
-            // Saata POST päring serverisse AJAX-iga
-            $.ajax({
-                type: "POST",
-                url: "kalkulaatori_tootlemise_skript.php",
-                data: $(this).serialize(), // Saadame vormi andmed
-                success: function(response) {
-                    // Kuvame kalkulatsiooni tulemuse
-                    $("#hind-tulemus").html(response);
-                },
-                error: function() {
-                    // Kui päring ebaõnnestub
-                    alert("Viga kalkulatsiooni päringus.");
-                }
-            });
-        });
+      // Saata POST päring serverisse AJAX-iga
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", "kalkulaatori_tootlemise_skript.php", true);
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          // Kuvame kalkulatsiooni tulemuse
+          document.getElementById("hind-tulemus").innerHTML = xhr.responseText;
+        }
+      };
+
+      // Saadame vormi andmed
+      xhr.send(new URLSearchParams(new FormData(event.target)));
     });
-
-
   </script>
 </body>
 </html>
