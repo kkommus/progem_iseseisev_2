@@ -48,7 +48,7 @@
             <a class="nav-link" href="#">Tooted</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Teenused</a>
+            <a id="teenusedNupp" class="nav-link" href="#">Teenused</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Kontakt</a>
@@ -59,62 +59,65 @@
   </div>
 </section>
 
-<section class="container mt-4">
-    <h2 class="text-center">Vali koolitus</h2>
-  
-    <?php
-    function arvutaHind() {
-      $algajateleHind = 199;
-      $edasijoudnuteleHind = 299;
+<h1>Harjutused 03</h1>
 
-      $algajateleKoolitus = isset($_POST['algajatele_koolitus']) ? $_POST['algajatele_koolitus'] : 'none';
-      $edasijoudnuteleKoolitus = isset($_POST['edasijoudnutele_koolitus']) ? $_POST['edasijoudnutele_koolitus'] : 'none';
+<!--
+    action - fail kuhu saadetakse
+    method - kuidas saadetakse, GET on avalik, POST on peidetud
 
-      $kokkuHind = 0;
+--> 
+   <form action="" method="GET">
+    Toode 1: <input type="number" name="Toode1"><br>
 
-      if ($algajateleKoolitus !== 'none') {
-        $kokkuHind += $algajateleHind;
-      }
+    Toode 2: <input type="number" name="Toode2"><br>
 
-      if ($edasijoudnuteleKoolitus !== 'none') {
-        $kokkuHind += $edasijoudnuteleHind;
-      }
+    Toode 3: <input type="number" name="Toode3"><br>
 
-      echo 'Hind: ' . $kokkuHind . '€';
+        <input type="submit" value="Arvuta">
+   </form>
+   <?php
+        //GETiga saatsin, GETiga võtan
+        if (!empty($_GET["Toode1"]) && 
+        !empty($_GET["Toode2"]) &&
+        !empty($_GET["Toode3"])) {
+
+        $t1 = $_GET["Toode1"];
+        $t2 = $_GET["Toode2"];
+        $t3 = $_GET["Toode3"];
+        $kokku = $t1+$t2+$t3;
+        
+
+        echo "Toode 1: $t1 tk <br>";
+        echo "Toode 2: $t2 tk <br>";
+        echo "Toode 3: $t3 tk <br>";
+        echo "Kõik kokku: $kokku tk"; 
+    } else {
+        echo "Kastid on tühjad";
     }
-    ?>
 
-    <form method="post" onsubmit="<?php arvutaHind(); ?>">
-      <div class="mb-3">
-        <label for="algajatele" class="form-label">Algajatele</label>
-        <select class="form-select" id="algajatele" name="algajatele_koolitus">
-          <option value="none">Vali koolitus</option>
-          <option value="sisulooja">Sisulooja Master Class</option>
-          <option value="turundus">Digitaalne turundus</option>
-          <option value="reklaamvideo">Reklaamvideote loomine</option>
-          <option value="graafiline_disain">Graafiline disain</option>
-        </select>
-      </div>
-  
-      <div class="mb-3">
-        <label for="edasijoudnutele" class="form-label">Edasijõudnutele</label>
-        <select class="form-select" id="edasijoudnutele" name="edasijoudnutele_koolitus">
-          <option value="none">Vali koolitus</option>
-          <option value="sisulooja2">Sisulooja Master Class 2</option>
-          <option value="turundus2">Digitaalne turundus 2</option>
-          <option value="reklaamvideo2">Reklaamvideote loomine 2</option>
-          <option value="graafiline_disain2">Graafiline disain 2</option>
-        </select>
-      </div>
-  
-      <button type="submit" class="btn btn-primary" name="arvuta">Vaata hinda</button>
-    </form>
 
-    <!-- Lisa see rida, et hinna tulemusi näidataks -->
-    <div id="hind-tulemus"><?php arvutaHind(); ?></div>
-  </section>
-  
-  <!-- Lisame Bootstrapi skriptifaili (vajalik Bootstrapi komponentide jaoks) -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+   ?>
+
+
+
+
+
+
+
+
+
+<!-- Lisame Bootstrapi skriptifaili (vajalik Bootstrapi komponentide jaoks) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Lisame JavaScript-koodi uue lehe avamiseks -->
+<script>
+  // Funktsioon Teenused nupu klikkimiseks
+  function avaNupp() {
+    // Muuda allpool olevat URL-i vastavalt soovitud lehele
+    window.location.href = "Teenused.html";
+  }
+
+  // Kuula Teenused nupu klikki
+  document.getElementById("teenusedNupp").addEventListener("click", avaNupp);
+</script>
 </body>
 </html>
