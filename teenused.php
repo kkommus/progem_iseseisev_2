@@ -95,7 +95,7 @@
             if ($input_value1 !== '' && $input_value2 !== '') {
                 // Kui on valitud "Vali siit", annab veateate
                 if ($select_option === 'Vali siit') {
-                    $error_message = 'Viga';
+                    $error_message = 'Palun vali endale sobiv koolitus!';
                 } else {
                     // Kalkulatsioon (korrutamine) 
                     $result = number_format($input_value1 * $input_value2) . ' €';
