@@ -6,27 +6,6 @@
   <title>Minu Veebileht</title>
   <!-- Lisame Bootstrapi stiilifaili -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script>
-    function arvutaHind() {
-      var algajateleHind = 199;
-      var edasijoudnuteleHind = 299;
-
-      var algajateleKoolitus = document.getElementById('algajatele').value;
-      var edasijoudnuteleKoolitus = document.getElementById('edasijoudnutele').value;
-
-      var kokkuHind = 0;
-
-      if (algajateleKoolitus !== 'none') {
-        kokkuHind += algajateleHind;
-      }
-
-      if (edasijoudnuteleKoolitus !== 'none') {
-        kokkuHind += edasijoudnuteleHind;
-      }
-
-      document.getElementById('hind-tulemus').innerHTML = 'Hind: ' + kokkuHind + '€';
-    }
-  </script>
 </head>
 <body>
   
@@ -83,7 +62,29 @@
 <section class="container mt-4">
     <h2 class="text-center">Vali koolitus</h2>
   
-    <form method="post" onsubmit="arvutaHind(); return false;">
+    <?php
+    function arvutaHind() {
+      $algajateleHind = 199;
+      $edasijoudnuteleHind = 299;
+
+      $algajateleKoolitus = isset($_POST['algajatele_koolitus']) ? $_POST['algajatele_koolitus'] : 'none';
+      $edasijoudnuteleKoolitus = isset($_POST['edasijoudnutele_koolitus']) ? $_POST['edasijoudnutele_koolitus'] : 'none';
+
+      $kokkuHind = 0;
+
+      if ($algajateleKoolitus !== 'none') {
+        $kokkuHind += $algajateleHind;
+      }
+
+      if ($edasijoudnuteleKoolitus !== 'none') {
+        $kokkuHind += $edasijoudnuteleHind;
+      }
+
+      echo 'Hind: ' . $kokkuHind . '€';
+    }
+    ?>
+
+    <form method="post" onsubmit="<?php arvutaHind(); ?>">
       <div class="mb-3">
         <label for="algajatele" class="form-label">Algajatele</label>
         <select class="form-select" id="algajatele" name="algajatele_koolitus">
@@ -110,7 +111,7 @@
     </form>
 
     <!-- Lisa see rida, et hinna tulemusi näidataks -->
-    <div id="hind-tulemus"></div>
+    <div id="hind-tulemus"><?php arvutaHind(); ?></div>
   </section>
   
   <!-- Lisame Bootstrapi skriptifaili (vajalik Bootstrapi komponentide jaoks) -->
