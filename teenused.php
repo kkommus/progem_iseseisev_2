@@ -161,7 +161,7 @@
         // Funktsioon Teenused nupu klikkimiseks
         function avaNupp() {
             // Muuda allpool olevat URL-i vastavalt soovitud lehele
-            window.location.href = "Teenused.html";
+            window.location.href = "teenused.php";
         }
 
         // Kuula Teenused nupu klikki
