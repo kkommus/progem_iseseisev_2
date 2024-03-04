@@ -6,6 +6,12 @@
     <title>Minu Veebileht</title>
     <!-- Lisame Bootstrapi stiilifaili -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Stiilireegel, et peita piltide ümber olevad jooned */
+        .card {
+            border: none;
+        }
+    </style>
 </head>
 <body>
 
@@ -59,7 +65,7 @@
 
 <!-- Ülesanne 1: Oskuste ribad -->
 <section class="container mt-4">
-    <h2 class="text-center">Oskused</h2>
+    <h2 class="text-center">Minu oskused</h2>
     <div class="container">
         <?php
         // Massiiv oskustest
@@ -87,24 +93,24 @@
     </div>
 </section>
 
-<!-- Ülesanne 2: Töötajate profiilifotod -->
+<!-- Töötajate profiilifotod -->
 <section class="container mt-4">
-    <h2 class="text-center">Töötajad</h2>
-    <div class="row row-cols-1 row-cols-md-3 g-4">
+    <h2 class="text-center">Meie töötajad</h2>
+    <div class="row row-cols-1 row-cols-md-6 g-4">
         <?php
-        // Piltide nimed
-        $employeeImages = ["devlin.jpg", "freeland.jpg", "gabriel.jpg", "pete.jpg", "peterus.jpg", "prentice.jpg"];
+        // Kataloog töötajate profiilifotodega
+        $images = ["devlin.jpg", "freeland.jpg", "gabriel.jpg", "pete.jpg", "peterus.jpg", "prentice.jpg"];
 
         // Genereeri töötajate profiilifotod ja andmed
-        foreach ($employeeImages as $employeeImage) {
-            $filename = pathinfo($employeeImage, PATHINFO_FILENAME);
+        foreach ($images as $image) {
+            $filename = pathinfo($image, PATHINFO_FILENAME);
             $name = ucfirst($filename);
             $email = $filename . "@sinunimi.ee";
 
             echo "
-            <div class='col'>
+            <div class='col text-center'>
                 <div class='card h-100'>
-                    <img src='{$employeeImage}' alt='{$name}' class='img-fluid'>
+                    <img src='{$image}' alt='Minu Pilt' class='img-fluid'>
                     <div class='card-body'>
                         <h5 class='card-title'>{$name}</h5>
                         <p class='card-text'>{$email}</p>
@@ -115,6 +121,8 @@
         ?>
     </div>
 </section>
+
+
 
 <!-- Lisame Bootstrapi skriptifaili (vajalik Bootstrapi komponentide jaoks) -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
