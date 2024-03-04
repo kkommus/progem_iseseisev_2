@@ -160,13 +160,13 @@
  // Funktsioon Teenused nupu klikkimiseks
 function avaNuppTeenused() {
     // Muuda allpool olevat URL-i vastavalt soovitud lehele
-    window.location.href = "teenused.html";
+    window.location.href = "teenused.php";
 }
 
 // Funktsioon Kontakt nupu klikkimiseks
 function avaNuppKontakt() {
     // Muuda allpool olevat URL-i vastavalt soovitud lehele
-    window.location.href = "kontakt.html";
+    window.location.href = "kontakt.php";
 }
 
 // Kuula Teenused nupu klikki
