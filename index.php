@@ -51,7 +51,8 @@
             <a id="teenusedNupp" class="nav-link" href="#">Teenused</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Kontakt</a>
+            <a id="kontaktNupp" class="nav-link" href="#">Kontakt</a>
+
           </li>
         </ul>
       </nav>
@@ -150,15 +151,32 @@
 <!-- Lisame Bootstrapi skriptifaili (vajalik Bootstrapi komponentide jaoks) -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Lisame JavaScript-koodi uue lehe avamiseks -->
+<!-- Lisame JavaScript-koodi uue lehe avamiseks -->
+<!-- Lisame Bootstrapi skriptifaili (vajalik Bootstrapi komponentide jaoks) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Lisame JavaScript-koodi uue lehe avamiseks -->
+<!-- Lisa skript nuppude avamiseks -->
 <script>
-  // Funktsioon Teenused nupu klikkimiseks
-  function avaNupp() {
+ // Funktsioon Teenused nupu klikkimiseks
+function avaNuppTeenused() {
     // Muuda allpool olevat URL-i vastavalt soovitud lehele
-    window.location.href = "teenused.php";
-  }
+    window.location.href = "teenused.html";
+}
 
-  // Kuula Teenused nupu klikki
-  document.getElementById("teenusedNupp").addEventListener("click", avaNupp);
+// Funktsioon Kontakt nupu klikkimiseks
+function avaNuppKontakt() {
+    // Muuda allpool olevat URL-i vastavalt soovitud lehele
+    window.location.href = "kontakt.html";
+}
+
+// Kuula Teenused nupu klikki
+document.getElementById("teenusedNupp").addEventListener("click", avaNuppTeenused);
+
+// Kuula Kontakt nupu klikki
+document.getElementById("kontaktNupp").addEventListener("click", avaNuppKontakt);
+
 </script>
+
 </body>
 </html>
+
